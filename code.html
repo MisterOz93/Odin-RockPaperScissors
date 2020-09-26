@@ -10,22 +10,22 @@
 
   
       
-    let userPick = prompt("Please Select Rock, Paper, or Scissors");
+    let userPick;
     let computerPick;
     let computerSelection;
 
      function computerPlay(){
-  
+  // Problem was with number of equal signs. It seems to work now.
    
-       computerPick == Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+       computerPick = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
 
-       if (computerPick = 1) {
+       if (computerPick == 1) {
          computerSelection = "rock";
       }          
-      else if (computerPick = 2) {
+      else if (computerPick == 2) {
         computerSelection = "paper";
       }
-      else if (computerPick = 3) {
+      else if (computerPick == 3) {
       computerSelection = "scissors";
       }
       
@@ -34,14 +34,14 @@
      }
 
 
-     const userSelection = userPick;
+     
       
      
     function playRound(){
     //This function will take the computer's random selection and the user's pick and play a round
     computerPlay();
     userPick = prompt("Please Select Rock, Paper, or Scissors");;
-
+    const userSelection = userPick;
    // Below is deciding who wins, start w/ ties
       if (userSelection == "rock" && computerSelection == "rock") {
         return "Both Players Chose Rock! It's a tie!";
