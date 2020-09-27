@@ -8,18 +8,16 @@
   <script>
      // rock is 1, paper is 2, scissors is 3 
 
-  
+  // Current issues:
+  // game() stops after one round, try making result variable and using that instead of return?
       
     
     let computerPick;
     let computerSelection;
-    let win = false;
-    let loss = false;
-    let tie = false;
     let totalWins = 0;
     let totalLosses = 0;
     let totalTies = 0;
-    
+    let result;
 
      function computerPlay(){
    
@@ -40,123 +38,73 @@
 
 
      
-      
-     
-    function playRound(){
+function game() {
+  function playRound(){
     //This function will take the computer's random selection and the user's pick and play a round
     computerPlay();
     userSelection = prompt("Please Select Rock, Paper, or Scissors");;
   
     userSelection = userSelection.toLowerCase();
 
-computerSelection = computerSelection.toLowerCase();
+    computerSelection = computerSelection.toLowerCase();
 
 
 
    // Below is deciding who wins, start w/ ties
       if (userSelection == "rock" && computerSelection == "rock") {
-        return "Both Players Chose Rock! It's a tie!";
-        tie = true;
+        result = "Both Players Chose Rock! It's a tie!";
+        totalTies += 1;
       } else if (userSelection == "paper" && computerSelection == "paper") {
-        return "Both Players Chose Paper! It's a tie!";
-        tie = true;
+        result = "Both Players Chose Paper! It's a tie!";
+        totalTies += 1;
         } else if (userSelection == "scissors" && computerSelection == "scissors") {
-        return "Both Players Chose Scissors! It's a tie!";
-        tie = true;
+        result = "Both Players Chose Scissors! It's a tie!";
+        totalTies += 1;
       } //Non-ties with user as rock
       else if (userSelection == "rock" && computerSelection == "paper") {
-        return "Paper Beats Rock! You Lose!";
-        loss = true;
+        result = "Paper Beats Rock! You Lose!";
+        totalLosses += 1;
     } else if (userSelection == "rock" && computerSelection == "scissors") {
-        return "Rock Beats Scissors! You Win!";
-        win = true; 
+        result = "Rock Beats Scissors! You Win!";
+        totalWins += 1;
   } // Non-ties with user as paper 
   else if (userSelection == "paper" && computerSelection == "scissors") {
-        return "Scissors beats paper! You lose!";
-        loss = true;
+        result = "Scissors beats paper! You lose!";
+        totalLosses += 1;
   } else if (userSelection == "paper" && computerSelection == "rock") {
-        return "Paper beats Rock! You Win!";
-         win = true;
+        result = "Paper beats Rock! You Win!";
+        totalWins += 1;
         //Non-ties with user as scissors
   } else if (userSelection == "scissors" && computerSelection == "rock") {
-        return "Rock beats Scissors! You lose!";
-        loss = true;
+        result = "Rock beats Scissors! You lose!";
+        totalLosses += 1;
   } else if (userSelection == "scissors" && computerSelection == "paper") {
-        return "Scissors beats Paper! You Win!";
-        win = true; 
+        result = "Scissors beats Paper! You Win!";
+        totalWins += 1; 
   } else {
-    return "Error, please choose either rock, paper, or scissors!";
+    result = "Error, please choose either rock, paper, or scissors!";
   }
       }
-  //When done with first two functions, make a new function called game() and nest playRound in it. 
-  //This function will play five rounds and keep score and report winner at end. In lieu of loop, call the
-  //Playround function 5 times. 
-	
-// Make Game function here before nesting the playRound function in it. Need to call playRound, then tally
-// score, then call playRound and repeat until 5 times.
-function game() {
+
+
   //round one
   playRound();
-  if (tie = true) { 
-    totalTies += 1;
-  console.log ("Round One Is a tie! "); }
-  else if (win = true) {
-    totalWins += 1;
-    console.log ("You Win Round One!");
-  } else if (loss = true) {
-    totalLosses += 1;
-    console.log ("You Lose Round One!");
-  }
+  console.log( result);
+  
 // round two
-playRound();
-  if (tie = true) { 
-    totalTies += 1;
-  console.log ("Round Two Is a tie! "); }
-  else if (win = true) {
-    totalWins += 1;
-    console.log ("You Win Round Two!");
-  } else if (loss = true) {
-    totalLosses += 1;
-    console.log ("You Lose Round Two!");
-  }
+   playRound();
+console.log (result);
   //round three
   playRound();
-  if (tie = true) { 
-    totalTies += 1;
-  console.log ("Round Three Is a tie! "); }
-  else if (win = true) {
-    totalWins += 1;
-    console.log ("You Win Round Three!");
-  } else if (loss = true) {
-    totalLosses += 1;
-    console.log ("You Lose Round Three!");
-  }
+  console.log (result);
   // round four
-  playRound();
-  if (tie = true) { 
-    totalTies += 1;
-  console.log ("Round Four Is a tie! "); }
-  else if (win = true) {
-    totalWins += 1;
-    console.log ("You Win Round Four!");
-  } else if (loss = true) {
-    totalLosses += 1;
-    console.log ("You Lose Round Four!");
-  }
+  playRound(); 
+  console.log (result);
+  
   // round five
   playRound();
-  if (tie = true) { 
-    totalTies += 1;
-  console.log ("Round Five Is a tie! "); }
-  else if (win = true) {
-    totalWins += 1;
-    console.log ("You Win Round Five!");
-  } else if (loss = true) {
-    totalLosses += 1;
-    console.log ("You Lose Round Five!");
-  }
-
-  console.log("Final score: You won " + totalWins + " games. You lost " + totalLosses + " games. There were " + totalTies + " ties." )
+  console.log (result);
+  console.log("Final score: You won " + totalWins + " game(s). You lost " + totalLosses + " game(s). There were " + totalTies + " tie(s)." )
 }
 
 
