@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+     // rock is 1, paper is 2, scissors is 3 
+
+  // step 2: 
+      
+    
+    let computerPick;
+    let computerSelection;
+    let totalWins = 0;
+    let totalLosses = 0;
+    let totalTies = 0;
+    let result;
+
+     function computerPlay(){
+   
+       computerPick = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+
+       if (computerPick == 1) {
+         computerSelection = "rock";
+      }          
+      else if (computerPick == 2) {
+        computerSelection = "paper";
+      }
+      else if (computerPick == 3) {
+      computerSelection = "scissors";
+      }
+      
+     // This function is called within playRound to determine computer's choice. 
+     }
+
+
+     
+function game() {
+  function playRound(){
+    //This function will take the computer's random selection and the user's pick and play a round
+    computerPlay();
+    userSelection = prompt("Please Select Rock, Paper, or Scissors");;
+  
+    userSelection = userSelection.toLowerCase();
+
+    computerSelection = computerSelection.toLowerCase();
+
+
+
+   // Below is deciding who wins, start w/ ties
+      if (userSelection == "rock" && computerSelection == "rock") {
+        result = "Both Players Chose Rock! It's a tie!";
+        totalTies += 1;
+      } else if (userSelection == "paper" && computerSelection == "paper") {
+        result = "Both Players Chose Paper! It's a tie!";
+        totalTies += 1;
+        } else if (userSelection == "scissors" && computerSelection == "scissors") {
+        result = "Both Players Chose Scissors! It's a tie!";
+        totalTies += 1;
+      } //Non-ties with user as rock
+      else if (userSelection == "rock" && computerSelection == "paper") {
+        result = "Paper Beats Rock! You Lose!";
+        totalLosses += 1;
+    } else if (userSelection == "rock" && computerSelection == "scissors") {
+        result = "Rock Beats Scissors! You Win!";
+        totalWins += 1;
+  } // Non-ties with user as paper 
+  else if (userSelection == "paper" && computerSelection == "scissors") {
+        result = "Scissors beats paper! You lose!";
+        totalLosses += 1;
+  } else if (userSelection == "paper" && computerSelection == "rock") {
+        result = "Paper beats Rock! You Win!";
+        totalWins += 1;
+        //Non-ties with user as scissors
+  } else if (userSelection == "scissors" && computerSelection == "rock") {
+        result = "Rock beats Scissors! You lose!";
+        totalLosses += 1;
+  } else if (userSelection == "scissors" && computerSelection == "paper") {
+        result = "Scissors beats Paper! You Win!";
+        totalWins += 1; 
+  } else {
+    result = "Error, please choose either rock, paper, or scissors!";
+  }
+      }
+
+
+  //round one
+  playRound();
+  console.log( result);
+  
+  console.log("Final score: You won " + totalWins + " game(s). You lost " + totalLosses + " game(s). There were " + totalTies + " tie(s)." )
+}
+
+
+
+
+  </script>
+</body>
+</html>
