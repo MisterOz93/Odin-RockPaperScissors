@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Page Title</title>
+  <title>Rock Paper Scissors Game</title>
   <meta charset="UTF-8"/>
 </head>
 <body>
@@ -9,6 +9,11 @@
 <button id="paper">Paper</button>
 <button id="scissors">Scissors</button>
 
+<div>
+
+<p id= 'outcome'></p>
+<p id= 'currentGame'></p>
+</div>
 
 
   <script>
@@ -92,23 +97,95 @@
   } else {
     result = "Error, please choose either rock, paper, or scissors!";
   }
-  console.log(result);
+  return result;
       }
 
   const rockButton = document.querySelector('#rock')
   const paperButton = document.querySelector('#paper')
   const scissorsButton = document.querySelector('#scissors')
+const currentGame = document.querySelector('#currentGame');
+const outcome = document.querySelector('#outcome');
 
-  rockButton.addEventListener('click', function () {playRound('rock')});
-  paperButton.addEventListener('click', function () {playRound('paper')});
-  scissorsButton.addEventListener('click', function () {playRound('scissors')});
+outcome.textContent = "Current Score: User = " + totalWins + " wins. Computer = " + totalLosses +
+        " wins. With " + totalTies + " ties.";
 
-// step 2: Create three buttons, one for each selection. Add an event listener to the buttons that calls 
-  //your playRound function with the correct playerSelection every time a button is clicked. 
-  //(you can keep the console.logs for this step)
 
-//current issue: "Uncaught TypeError: EventTarget.addEventListener: Argument 2 is not an object."
-//^solved the issue by fixing syntax, needed to run a function that runs the playround function. 
+  rockButton.addEventListener('click', function (e) {playRound('rock')
+  currentGame.textContent = result;
+  outcome.textContent = "Current Score: User = " + totalWins + " wins. Computer = " + totalLosses +
+        " wins. With " + totalTies + " ties.";
+        if (totalWins == 5) {
+            outcome.textContent = "You Won, Play Again?";
+            totalLosses = 0
+          totalWins = 0
+          totalTies = 0;
+          
+          alert('You Win! Way to go.');
+         
+      } 
+      if (totalLosses == 5) {
+        outcome.textContent = "The Computer Won, Play Again?";
+        totalLosses = 0
+          totalWins = 0
+          totalTies = 0;
+          
+          alert('You Lose! Better luck next time.');
+          
+      }
+  });
+  paperButton.addEventListener('click', function (e) {playRound('paper')
+  currentGame.textContent = result;
+  outcome.textContent = "Current Score: User = " + totalWins + " wins. Computer = " + totalLosses +
+        " wins. With " + totalTies + " ties.";
+        if (totalWins == 5) {
+            outcome.textContent = "You Won, Play Again?";
+            totalLosses = 0
+          totalWins = 0
+          totalTies = 0;
+          
+          alert('You Win! Way to go.');
+         
+      } 
+      if (totalLosses == 5) {
+        outcome.textContent = "The Computer Won, Play Again?";
+        totalLosses = 0
+          totalWins = 0
+          totalTies = 0;
+          
+          alert('You Lose! Better luck next time.');
+          
+      }
+  });
+  scissorsButton.addEventListener('click', function (e) {playRound('scissors')
+  currentGame.textContent = result;
+  outcome.textContent = "Current Score: User = " + totalWins + " wins. Computer = " + totalLosses +
+        " wins. With " + totalTies + " ties.";
+       if (totalWins == 5) {
+            outcome.textContent = "You Won, Play Again?";
+            totalLosses = 0
+          totalWins = 0
+          totalTies = 0;
+          
+          alert('You Win! Way to go.');
+         
+      } 
+      if (totalLosses == 5) {
+        outcome.textContent = "The Computer Won, Play Again?";
+        totalLosses = 0
+          totalWins = 0
+          totalTies = 0;
+          
+          alert('You Lose! Better luck next time.');
+          
+      }
+      
+  
+  });
+ 
+
+
+
+
 
   </script>
 </body>
