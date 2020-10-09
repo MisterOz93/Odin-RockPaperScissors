@@ -5,14 +5,20 @@
   <meta charset="UTF-8"/>
 </head>
 <body>
+<button id="rock">Rock</button>
+<button id="paper">Paper</button>
+<button id="scissors">Scissors</button>
+
+
+
   <script>
      // rock is 1, paper is 2, scissors is 3 
 
-  // step 2: 
-      
-    
+  
+
     let computerPick;
     let computerSelection;
+    let userSelection;
     let totalWins = 0;
     let totalLosses = 0;
     let totalTies = 0;
@@ -36,18 +42,21 @@
      }
 
 
-     
-function game() {
-  function playRound(){
+   function userPlay() {  
+  userSelection = prompt("Please Select Rock, Paper, or Scissors");;
+  
+  userSelection = userSelection.toLowerCase();
+
+ }
+
+
+
+
+  function playRound(userSelection){
     //This function will take the computer's random selection and the user's pick and play a round
     computerPlay();
-    userSelection = prompt("Please Select Rock, Paper, or Scissors");;
-  
-    userSelection = userSelection.toLowerCase();
-
     computerSelection = computerSelection.toLowerCase();
-
-
+    
 
    // Below is deciding who wins, start w/ ties
       if (userSelection == "rock" && computerSelection == "rock") {
@@ -83,18 +92,23 @@ function game() {
   } else {
     result = "Error, please choose either rock, paper, or scissors!";
   }
+  console.log(result);
       }
 
+  const rockButton = document.querySelector('#rock')
+  const paperButton = document.querySelector('#paper')
+  const scissorsButton = document.querySelector('#scissors')
 
-  //round one
-  playRound();
-  console.log( result);
-  
-  console.log("Final score: You won " + totalWins + " game(s). You lost " + totalLosses + " game(s). There were " + totalTies + " tie(s)." )
-}
+  rockButton.addEventListener('click', function () {playRound('rock')});
+  paperButton.addEventListener('click', function () {playRound('paper')});
+  scissorsButton.addEventListener('click', function () {playRound('scissors')});
 
+// step 2: Create three buttons, one for each selection. Add an event listener to the buttons that calls 
+  //your playRound function with the correct playerSelection every time a button is clicked. 
+  //(you can keep the console.logs for this step)
 
-
+//current issue: "Uncaught TypeError: EventTarget.addEventListener: Argument 2 is not an object."
+//^solved the issue by fixing syntax, needed to run a function that runs the playround function. 
 
   </script>
 </body>
