@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors Game</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <h1>First Player to Win 5 Rounds Wins The Game!</h1>
+<button id="rock">Rock</button>
+<button id="paper">Paper</button>
+<button id="scissors">Scissors</button>
+
+<div>
+
+<p id= 'outcome'></p>
+<p id= 'currentGame'></p>
+</div>
+
+
+  <script>
+     
+
+  
+
+    let computerPick;
+    let computerSelection;
+    let userSelection;
+    let totalWins = 0;
+    let totalLosses = 0;
+    let totalTies = 0;
+    let result;
+
+     function computerPlay(){
+       // rock is 1, paper is 2, scissors is 3 
+   
+       computerPick = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+
+       if (computerPick == 1) {
+         computerSelection = "rock";
+      }          
+      else if (computerPick == 2) {
+        computerSelection = "paper";
+      }
+      else if (computerPick == 3) {
+      computerSelection = "scissors";
+      }
+      
+     // This function is called within playRound to determine computer's choice. 
+     }
+
+
+   function userPlay() {  
+  userSelection = prompt("Please Select Rock, Paper, or Scissors");;
+  
+  userSelection = userSelection.toLowerCase();
+
+ } //pretty sure this function isn't needed anymore after switching to button ui. will keep just in case 
+
+
+
+
+  function playRound(userSelection){    // user selection as parameter so that eventListeners can manipulate buttons. 
+    //This function will take the computer's random selection and the user's pick and play a round
+    computerPlay();
+    computerSelection = computerSelection.toLowerCase();
+    
+
+   // Below is deciding who wins, start w/ ties
+      if (userSelection == "rock" && computerSelection == "rock") {
+        result = "Both Players Chose Rock! It's a tie!";
+        totalTies += 1;
+      } else if (userSelection == "paper" && computerSelection == "paper") {
+        result = "Both Players Chose Paper! It's a tie!";
+        totalTies += 1;
+        } else if (userSelection == "scissors" && computerSelection == "scissors") {
+        result = "Both Players Chose Scissors! It's a tie!";
+        totalTies += 1;
+      } //Non-ties with user as rock
+      else if (userSelection == "rock" && computerSelection == "paper") {
+        result = "Paper Beats Rock! You Lose!";
+        totalLosses += 1;
+    } else if (userSelection == "rock" && computerSelection == "scissors") {
+        result = "Rock Beats Scissors! You Win!";
+        totalWins += 1;
+  } // Non-ties with user as paper 
+  else if (userSelection == "paper" && computerSelection == "scissors") {
+        result = "Scissors beats paper! You lose!";
+        totalLosses += 1;
+  } else if (userSelection == "paper" && computerSelection == "rock") {
+        result = "Paper beats Rock! You Win!";
+        totalWins += 1;
+        //Non-ties with user as scissors
+  } else if (userSelection == "scissors" && computerSelection == "rock") {
+        result = "Rock beats Scissors! You lose!";
+        totalLosses += 1;
+  } else if (userSelection == "scissors" && computerSelection == "paper") {
+        result = "Scissors beats Paper! You Win!";
+        totalWins += 1; 
+  } else {
+    result = "Error, please choose either rock, paper, or scissors!";
+  }
+  return result;
+      }
+
+  const rockButton = document.querySelector('#rock')
+  const paperButton = document.querySelector('#paper')
+  const scissorsButton = document.querySelector('#scissors')
+const currentGame = document.querySelector('#currentGame');
+const outcome = document.querySelector('#outcome');
+
+outcome.textContent = "Current Score: User = " + totalWins + " wins. Computer = " + totalLosses +
+        " wins. With " + totalTies + " ties.";
+
+
+  rockButton.addEventListener('click', function (e) {
+    playRound('rock')
+  currentGame.textContent = "Round " + (totalWins + totalLosses + totalTies) + ": " + result;
+  outcome.textContent = "Current Score: User = " + totalWins + " wins. Computer = " + totalLosses +
+        " wins. With " + totalTies + " ties.";
+        if (totalWins == 5) {
+            outcome.textContent = "You Won, Play Again?";
+            currentGame.textContent = "";
+            totalLosses = 0
+          totalWins = 0
+          totalTies = 0;
+          
+          alert('You Win! Way to go.');
+         
+      } 
+      if (totalLosses == 5) {
+        outcome.textContent = "The Computer Won, Play Again?";
+        currentGame.textContent = "";
+        totalLosses = 0
+          totalWins = 0
+          totalTies = 0;
+          
+          alert('You Lose! Better luck next time.');
+          
+      }
+  });
+  paperButton.addEventListener('click', function (e) {
+    playRound('paper')
+  currentGame.textContent = "Round " + (totalWins + totalLosses + totalTies) + ": " + result;
+  outcome.textContent = "Current Score: User = " + totalWins + " wins. Computer = " + totalLosses +
+        " wins. With " + totalTies + " ties.";
+        if (totalWins == 5) {
+            outcome.textContent = "You Won, Play Again?";
+            totalLosses = 0
+          totalWins = 0
+          totalTies = 0;
+          currentGame.textContent = "";
+          alert('You Win! Way to go.');
+         
+      } 
+      if (totalLosses == 5) {
+        outcome.textContent = "The Computer Won, Play Again?";
+        totalLosses = 0
+          totalWins = 0
+          totalTies = 0;
+          currentGame.textContent = "";
+          alert('You Lose! Better luck next time.');
+          
+      }
+  });
+  scissorsButton.addEventListener('click', function (e) {
+    playRound('scissors')
+  currentGame.textContent = "Round " + (totalWins + totalLosses + totalTies) + ": " + result;
+  outcome.textContent = "Current Score: User = " + totalWins + " wins. Computer = " + totalLosses +
+        " wins. With " + totalTies + " ties.";
+       if (totalWins == 5) {
+            outcome.textContent = "You Won, Play Again?";
+            totalLosses = 0
+          totalWins = 0
+          totalTies = 0;
+          currentGame.textContent = "";
+          alert('You Win! Way to go.');
+         
+      } 
+      if (totalLosses == 5) {
+        outcome.textContent = "The Computer Won, Play Again?";
+        totalLosses = 0
+          totalWins = 0
+          totalTies = 0;
+          currentGame.textContent = "";
+          alert('You Lose! Better luck next time.');
+          
+      }
+      
+  
+  });
+ 
+
+
+
+
+
+  </script>
+</body>
+</html>
